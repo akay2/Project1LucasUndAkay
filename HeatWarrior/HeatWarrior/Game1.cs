@@ -12,8 +12,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-//Heat Engine
-using HeatEngine;
+//Engine
+using XRpgLibrary;
 
 namespace HeatWarrior
 {
