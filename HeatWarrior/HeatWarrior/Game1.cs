@@ -14,6 +14,7 @@ using Microsoft.Xna.Framework.Media;
 
 //Engine
 using XRpgLibrary;
+using HeatWarrior.GameScreens;
 
 namespace HeatWarrior
 {
@@ -21,16 +22,56 @@ namespace HeatWarrior
 
     public class Game1 : Microsoft.Xna.Framework.Game
     {
+        #region Field Region
+
         GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        public SpriteBatch SpriteBatch;
+        public readonly Rectangle ScreenRectangle;
+        const int screenWidth = 1024;
+        const int screenHeight = 768;
+
+        #endregion
+
+        #region GameScreen Region
+
+        GameStateManager stateManager;
+        public TitleScreen TitleScreen;
+        public StartMenuScreen StartMenuScreen;
+        public GamePlayScreen GamePlayScreen;
+        public CharacterGeneratorScreen CharacterGeneratorScreen;
+
+        #endregion
+
+
+        #region Game State Region
+
+
+
+        #endregion
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+
+            graphics.PreferredBackBufferWidth = screenWidth;
+            graphics.PreferredBackBufferHeight = screenHeight;
+
+            stateManager = new GameStateManager(this);
             Content.RootDirectory = "Content";
+
+            ScreenRectangle = new Rectangle(0, 0, screenWidth, screenHeight);
 
             //Hier werden die Componenten Hinzugefügt
             Components.Add(new InputHandler(this)); //Dieses Komponent prüft dauerhaft auf eingaben der tastetur/GamePad
+            Components.Add(stateManager); //dieses Komponent ist für die verschiedenen bildschirme dar.
+
+            //alle bildschirme adden
+            TitleScreen = new TitleScreen(this, stateManager);
+            StartMenuScreen = new StartMenuScreen(this, stateManager);
+            GamePlayScreen = new GamePlayScreen(this, stateManager);
+            CharacterGeneratorScreen = new CharacterGeneratorScreen(this, stateManager);
+
+            stateManager.ChangeState(TitleScreen);
         }
 
        
@@ -45,7 +86,7 @@ namespace HeatWarrior
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            SpriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
         }
