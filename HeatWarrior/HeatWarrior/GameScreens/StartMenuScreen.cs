@@ -81,22 +81,25 @@ namespace HeatWarrior.GameScreens
             ControlManager.Add(arrowImage2);
 
             startGame = new LinkLabel();
-            startGame.Text = "The story begins";
+            startGame.Text = "New Game";
             startGame.Size = startGame.SpriteFont.MeasureString(startGame.Text);
+            startGame.SelectedColor = Color.DarkGray;
             startGame.Selected += new EventHandler(menuItem_Selected);
 
             ControlManager.Add(startGame);
 
             loadGame = new LinkLabel();
-            loadGame.Text = "The story continues";
+            loadGame.Text = "Load Game";
             loadGame.Size = loadGame.SpriteFont.MeasureString(loadGame.Text);
+            loadGame.SelectedColor = Color.DarkGray;
             loadGame.Selected += new EventHandler(menuItem_Selected);
 
             ControlManager.Add(loadGame);
 
             exitGame = new LinkLabel();
-            exitGame.Text = "The story ends";
+            exitGame.Text = "Exit Game";
             exitGame.Size = exitGame.SpriteFont.MeasureString(exitGame.Text);
+            exitGame.SelectedColor = Color.DarkGray;
             exitGame.Selected += new EventHandler(menuItem_Selected);
 
             ControlManager.Add(exitGame);
@@ -137,7 +140,7 @@ namespace HeatWarrior.GameScreens
         {
             if (sender == startGame)
             {
-                StateManager.PushState(GameRef.CharacterGeneratorScreen);
+                //StateManager.PushState(GameRef.CharacterGeneratorScreen);
             }
 
             if (sender == loadGame)
